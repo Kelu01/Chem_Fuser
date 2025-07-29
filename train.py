@@ -100,7 +100,7 @@ def diffusiontrain():
                 # Save best-performing model
                 if loss.item() < best_loss:
                     best_loss = loss.item()
-                    checkpoint_path = "checkpoints/Diffusion.ckpt"
+                    checkpoint_path = "checkpoints/chem_fuser.ckpt"
                     torch.save({
                         "model_state_dict": model_ref.state_dict(),
                         "optimizer_state_dict": optimizer.state_dict()
@@ -115,7 +115,7 @@ def diffusiontrain():
         wandb.log({"learning_rate": lr_scheduler.get_last_lr()[0]})
 
         # Save final model after each epoch
-        final_path = "checkpoints/Diffusion_final.ckpt"
+        final_path = "checkpoints/chem_fuser_final.ckpt"
         torch.save({
             "model_state_dict": model_ref.state_dict(),
             "optimizer_state_dict": optimizer.state_dict()
