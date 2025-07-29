@@ -20,7 +20,6 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 import wandb
 import os
-
 from model import DiffusionModel
 from vocab import MolData, Vocabulary
 from model import MaskingScheduler
