@@ -3,6 +3,9 @@ import torch
 import re
 import numpy as np
 from torch.utils.data import Dataset
+import os
+import gzip
+import shutil
 
 def Variable(tensor):
     """Wrapper for torch.autograd.Variable that also accepts
@@ -122,3 +125,17 @@ class MolData(Dataset):
         for i, seq in enumerate(arr):
             collated_arr[i, :seq.size(0)] = seq
         return collated_arr
+    
+def extract_gz_if_needed(filepath):
+    """
+    Extracts a .gz file if it exists and the extracted .txt version is missing.
+    Returns the path to the extracted .txt file.
+    """
+    if filepath.endswith('.gz'):
+        extracted_path = filepath[:-3]  # remove .gz extension
+        if not os.path.exists(extracted_path):
+            print(f"Extracting {filepath} to {extracted_path}...")
+            with gzip.open(filepath, 'rb') as f_in, open(extracted_path, 'wb') as f_out:
+                shutil.copyfileobj(f_in, f_out)
+        return extracted_path
+    return filepath

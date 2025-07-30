@@ -7,8 +7,10 @@ from model import DiffusionModel, MaskingScheduler
 from vocab import MolData, Vocabulary
 from torch.optim.lr_scheduler import ExponentialLR
 import os
+from vocab import extract_gz_if_needed
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+smiles_path = extract_gz_if_needed("data/canonical_smiles.txt.gz")
 
 
 def diffusiontrain():
