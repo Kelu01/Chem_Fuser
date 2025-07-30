@@ -109,7 +109,7 @@ def diffusiontrain():
                         "optimizer_state_dict": optimizer.state_dict()
                     }, checkpoint_path)
                     wandb.save(checkpoint_path, base_path=os.path.dirname(checkpoint_path))
-                    tqdm.write(f"🧠 New best model saved with loss: {best_loss:.2f}")
+                    tqdm.write(f"New best model saved with loss: {best_loss:.2f}")
 
             global_step += 1
 

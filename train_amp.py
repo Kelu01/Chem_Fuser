@@ -106,7 +106,7 @@ def diffusiontrain():
                     checkpoint_path = "checkpoints/chem_fuser.ckpt"
                     torch.save(model.state_dict(), checkpoint_path)
                     wandb.save(checkpoint_path, base_path=os.path.dirname(checkpoint_path))
-                    tqdm.write(f"✅ New best model saved with loss: {best_loss:.4f}")
+                    tqdm.write(f"New best model saved with loss: {best_loss:.4f}")
 
             global_step += 1
 
