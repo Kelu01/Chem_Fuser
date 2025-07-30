@@ -10,6 +10,7 @@ import os
 from vocab import extract_gz_if_needed
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 smiles_path = extract_gz_if_needed("data/canonical_smiles.txt.gz")
 
 
@@ -85,7 +86,7 @@ def diffusiontrain():
             wandb.log({"loss": loss.item(), "epoch": epoch, "step": global_step})
 
             # Periodically sample and evaluate unmasking quality
-            if global_step % 10 == 0 and global_step != 0:
+            if global_step % 500 == 0 and global_step != 0:
                 masked_smiles, unmasked_smiles = model_ref.sample(
                     voc, seqs, mask_scheduler, current_step=global_step)
                 valid = 0
